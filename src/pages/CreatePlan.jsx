@@ -1,5 +1,6 @@
 import {Container, Button, Form, Col, Row} from 'react-bootstrap'
 import {React, useContext, useEffect, useState} from 'react'
+import {useNavigate } from "react-router";
 import {supabase} from "../lib/supabaseClient"
 import PlanDist from '../components/PlanDist'
 import PlanDays from '../components/PlanDays'
@@ -60,13 +61,16 @@ function CreatePlan(props) {
 			alert("Input errors found:\n" + errStr);
 			return;
 		}
-		// popup modal to input name
+		//TODO popup modal to input name
 		alert("Plan created successfully!");
 
 	}
+
+	let	nav = useNavigate();
 	function cancelForm() {
 		alert("Plan cancelled");
 		//return to homepage
+		nav("/");
 	}
 
 	return (<>
