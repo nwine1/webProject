@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -8,12 +8,20 @@ import Landing from './pages/Landing'
 import NavBar from './components/NavBar'
 import CreatePlan from './pages/CreatePlan'
 import NotFound from './pages/NotFound'
+import CurrentUserContext from "./context/CurrentUserContext";
 
 function App() {
   const [count, setCount] = useState(0)
+  const [user, setUser] = useState();
+  const [types, setTypes] = useState();
+  const [planList, setPlanList] = useState();
 
   return (
-    <>
+    <CurrentUserContext.Provider value={[
+		{userId: user, setUser: setUser},
+		{planList: planList, setPlanList: setPlanList},
+		{types: types, setTypes: setTypes}
+	]}>
 		<NavBar />
 		<Routes>
 			<Route path="/" element={<Landing />} />
@@ -25,7 +33,7 @@ function App() {
 			
 			<Route path="*" element={<NotFound />} />
 		</Routes>
-    </>
+    </CurrentUserContext.Provider>
   )
 }
 

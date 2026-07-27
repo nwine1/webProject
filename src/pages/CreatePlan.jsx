@@ -1,22 +1,15 @@
 import {Container, Button, Form, Col, Row} from 'react-bootstrap'
-import {React, useContext, useState} from 'react'
+import {React, useContext, useEffect, useState} from 'react'
+import {supabase} from "../lib/supabaseClient"
 import PlanDist from '../components/PlanDist'
 import PlanDays from '../components/PlanDays'
 import PlanDate from '../components/PlanDate'
 import CreatePlanContext from "../context/CreateFormContext";
-/*
-	props.distance
-	props.unit
+/* props.distance
+	props.unit */
 
-*/
-const dayOptions = {
-	0: "Unselected",
-	1: "Rest Day",
-	2: "Cross-train",
-	3: "Short Run",
-	4: "Long Run",	
-};
 const PLAN_MIN = 14;
+const currentUser = "-";
 
 function CreatePlan(props) {	
 	const customPlan = (Number(props.distance) === 0); // this should be set on inital load and does not change
@@ -24,7 +17,7 @@ function CreatePlan(props) {
 	// Form data state variables:
 	const [distance, setDistance] = useState(props.distance);
 	const [unit, setUnit] = useState(props.unit);
-	const [date, setDate] = useState("");
+	const [date, setDate] = useState("");  // Race Date
 	const [dayArray, setDayArray] = useState([0,0,0,0,0,0,0]);
 
 	function checkInputs() {
