@@ -22,7 +22,7 @@ function LoginForm(props) {
 		} else {
 			let user =  data[0].user_id;
 			userData.setUser(user);
-			sessionStorage.setItem("login user", user);
+			sessionStorage.setItem("login user", JSON.stringify(user));
 		}
 	}
 	

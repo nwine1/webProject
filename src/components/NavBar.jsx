@@ -7,7 +7,7 @@ function NavBar() {
 	const [userData, planData, typesData] = useContext(CurrentUserContext);	// Clears values on logout
 																			// Reads planList
 	function logoutUser() {
-		sessionStorage.setItem("login user", "");
+		sessionStorage.setItem("login user", JSON.stringify(""));
 		userData.setUser("");
 		planData.setPlanList("");
 		typesData.setTypes("");	
