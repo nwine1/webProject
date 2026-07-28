@@ -2,10 +2,11 @@ import {Container, Button, Form, Col, Row} from 'react-bootstrap'
 import {React, useContext, useEffect, useState} from 'react'
 import {useNavigate } from "react-router";
 import {supabase} from "../lib/supabaseClient"
-import PlanDist from '../components/PlanDist'
-import PlanDays from '../components/PlanDays'
-import PlanDate from '../components/PlanDate'
+import PlanDist from '../components/createFormComponents/PlanDist'
+import PlanDays from '../components/createFormComponents/PlanDays'
+import PlanDate from '../components/createFormComponents/PlanDate'
 import CreatePlanContext from "../context/CreateFormContext";
+
 /* props.distance
 	props.unit */
 

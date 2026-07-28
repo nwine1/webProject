@@ -5,9 +5,9 @@ import CurrentUserContext from "../context/CurrentUserContext"
 
 
 function UserHomePage() {
-	const [userData, planData, typesData] = useContext(CurrentUserContext);
-
-	const user = sessionStorage.getItem("login user")
+	const [userData, planData, typesData] = useContext(CurrentUserContext); // sets plan data and types data 
+																			// Reads plan data
+	const user = JSON.parse(sessionStorage.getItem("login user"));
 	
 	useEffect(() => {
         async function fetchTypes() {
@@ -19,7 +19,7 @@ function UserHomePage() {
             if (error) {
                 alert(error.message);
             } else {
-                console.log("data:", data);
+                //console.log("UserHomePage TYPES data:", data);
 				typesData.setTypes(data);
             }
         } //fetchTypes
@@ -30,23 +30,24 @@ function UserHomePage() {
 	useEffect( () => {
 		async function fetchPlans() {
 			const {data, error} = await supabase
-				.from('PLANS')
-				.select('name, distance, units, start_date, end_date')
+				.from('PLANS_SUMMARY')
+				.select('plan_id, name, distance, units, duration, start_date, end_date')
 				.eq('user_id', user);
 			if (error) {
 				alert(error.message);
 			} else {
-				console.log("plan data: ", data);
+				//console.log("UserHomePage plan data: ", data);
 				planData.setPlanList(data);
 			}
 		}// fetchPlans
 		fetchPlans();
 	}, []);
 
-	console.log(planData);	
-	return <>{(planData.planList && planData.planList.length > 0) 
-			? <PlanListDisplay planList={planData.planList}/> 
-			: <p><br/><em>No Plans Created</em></p>} </>
+	return <>
+			{(planData.planList && planData.planList.length > 0) 
+				? <PlanListDisplay planList={planData.planList}/> 
+				: <p><br/><em>No Plans Created</em></p>}
+		   </>
 }
 
 export default UserHomePage

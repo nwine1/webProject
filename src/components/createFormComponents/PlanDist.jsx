@@ -1,7 +1,6 @@
 import {Col, Row, Form} from "react-bootstrap"
 import { useContext } from "react"
-
-import CreatePlanContext from "../context/CreateFormContext"
+import CreatePlanContext from "../../context/CreateFormContext"
 
 function PlanDist(props) {
 	const [form, functions] = useContext(CreatePlanContext);

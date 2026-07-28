@@ -6,7 +6,7 @@ import CurrentUserContext from "../context/CurrentUserContext";
 function LoginForm(props) {
     const usernameRef = useRef();
     const passwordRef = useRef();
-	const userData = useContext(CurrentUserContext)[0];
+	const userData = useContext(CurrentUserContext)[0]; // sets user
 
 	async function fetchUser(u, p) {
 		const {data, error} = await supabase
@@ -22,7 +22,7 @@ function LoginForm(props) {
 		} else {
 			let user =  data[0].user_id;
 			userData.setUser(user);
-			sessionStorage.setItem("login user", JSON.stringify(user));
+			sessionStorage.setItem("login user", user);
 		}
 	}
 	
