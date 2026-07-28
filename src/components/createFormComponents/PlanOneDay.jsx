@@ -7,7 +7,7 @@ import CurrentUserContext from "../../context/CurrentUserContext";
 function PlanOneDay(props) {
 
 	const [form, functions] = useContext(CreatePlanContext);
-	const [typesData] = useContext(CurrentUserContext)[2];
+	const [userData, planData, typesData] = useContext(CurrentUserContext);
 	const ix = props.ix;
 	
 	// Map type options object retrieved from supabase to dropdown menu

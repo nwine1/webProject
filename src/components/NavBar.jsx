@@ -5,12 +5,13 @@ import CurrentUserContext from "../context/CurrentUserContext";
 
 function NavBar() {
 	const [userData, planData, typesData] = useContext(CurrentUserContext);	// Clears values on logout
-																			// Reads planList
+	let useNav = useNavigate();																		// Reads planList
 	function logoutUser() {
 		sessionStorage.setItem("login user", JSON.stringify(""));
 		userData.setUser("");
 		planData.setPlanList("");
 		typesData.setTypes("");	
+		useNav("/");
 	}
 	 
 	let user = JSON.parse(sessionStorage.getItem("login user"));
