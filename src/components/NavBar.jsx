@@ -21,9 +21,13 @@ function NavBar() {
 	if (planList && planList.length > 0) {
 		planDropdown = planList.filter((plan)=>{
 				// For dropdown, only show current plans
-				let end = plan.date;
-				let today = Date.now;
+				let end = plan.end_date;
+				console.log("E : ", end);
+				let today = Date.now();
 				end = Date.parse(end);
+				console.log(plan.name);
+				console.log("T : ", today);
+				console.log("E : ", end);
 				if (end < today) return false;
 				return true;
 			}).map((plan) => {
